@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CozyKos - Elegant Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .bg-pattern {
+            background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+        }
+
+        .input-focus-effect:focus {
+            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <!-- Main container with horizontal layout -->
+    <div class="w-full max-w-4xl flex flex-col md:flex-row rounded-2xl overflow-hidden shadow-2xl">
+        <!-- Left decorative panel -->
+        <div class="w-full md:w-1/2 bg-pattern relative">
+            <div class="absolute inset-0 bg-purple-900 bg-opacity-70"></div>
+            <div class="relative h-full flex flex-col items-center justify-center p-8 text-center">
+                <div class="mb-6 bg-white bg-opacity-20 p-4 rounded-full">
+                    <i class="fas fa-home text-white text-4xl"></i>
+                </div>
+                <h1 class="text-4xl font-bold text-white mb-2">CozyKos</h1>
+                <p class="text-white text-opacity-80">Luxury living redefined</p>
+            </div>
+        </div>
+
+        <!-- Right form panel -->
+        <div class="w-full md:w-1/2 glass-effect p-10 flex flex-col justify-center">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800">Welcome Back</h2>
+                <p class="text-gray-500">Sign in to your account</p>
+            </div>
+
+            <!-- Error message -->
+            <!-- <div th:if="${error}" class="mb-4 text-center text-red-600 font-medium">
+                <p th:text="${error}"></p>
+            </div> -->
+            <div th:if="${error}" class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50"
+                role="alert">
+                <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                    <span th:text="${error}" class="font-medium"></span>
+                </div>
+            </div>
+
+            <!-- Login form -->
+            <form th:action="@{/auth/login}" method="post" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="far fa-user text-gray-400"></i>
+                        </div>
+                        <input type="text" id="username" name="username"
+                            class="input-focus-effect pl-10 w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-purple-500"
+                            placeholder="Enter your username">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="password" name="password"
+                            class="input-focus-effect pl-10 w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-purple-500"
+                            placeholder="Enter your password">
+                        <span toggle="#exampleInputPassword1"
+                            class="fa fa-fw fa-eye field-icon toggle-password text-gray-400" onclick="togglePassword()"
+                            style="position: absolute; top: 17px; right: 10px; cursor: pointer;"></span>
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full py-3 px-4 rounded-lg shadow-sm text-white bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-300 flex items-center justify-center">
+                    Login
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+    function togglePassword() {
+        const input = document.getElementById("password");
+        const icon = document.querySelector(".toggle-password");
+
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            input.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+</script>
+
+</html>

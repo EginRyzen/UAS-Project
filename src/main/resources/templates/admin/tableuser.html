@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOS</title>
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Custom styles for this template-->
+    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
+    <!-- Custom styles for this page -->
+    <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <div th:replace="~{components/admin/sidebar :: sidebar}"></div>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <div th:replace="~{components/admin/navbar :: navbar}"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div th:fragment="user" class="container-fluid position-relative">
+
+                    <!-- Page Heading -->
+                    <div class="">
+                        <a type="button" class="btn btn-primary mb-3" data-toggle="modal"
+                            data-target="#tambahModal">Tambah
+                            Kos +<i class="fas fa-fw fa-user"></i> </a>
+
+                        <div th:if="${error}" class="alert alert-danger mb-4" th:text="${error}"></div>
+                        <div th:if="${success}" class="alert alert-success mb-4" th:text="${success}"></div>
+
+                    </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Kos</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="user : ${listuser}">
+                                            <td class="font-weight-bold" th:text="${user.name}"></td>
+                                            <td class="font-weight-bold" th:text="${user.username}"></td>
+                                            <td class="font-weight-bold" th:text="${user.email}"></td>
+                                            <td>
+                                                <form th:action="@{'/admin/user/status/' + ${user.id}}" method="post"
+                                                    style="display: inline;">
+                                                    <button type="submit"
+                                                        th:classappend="${user.status.name() == 'ACTIVE'} ? 'btn btn-success btn-sm' : 'btn btn-secondary btn-sm'"
+                                                        th:text="${user.status}">
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td class="d-flex justify-content-center">
+
+                                                <!-- Edit button and modal -->
+                                                <a href="#" type="button" data-toggle="modal"
+                                                    class="btn btn-warning mr-2 btn-sm btn-edit-user"
+                                                    th:data-target="'#editModal__' + ${user.id}">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <!-- Modal Edit -->
+                                                <div class="modal fade" th:id="'editModal__' + ${user.id}" tabindex="-1"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <form th:action="@{/admin/edit/user}" method="post">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Edit
+                                                                        User</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <input type="hidden" name="id"
+                                                                        th:value="${user.id}">
+                                                                    <div class="form-group">
+                                                                        <label for="edit-name">Nama Langkap</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="name"
+                                                                            th:id="'edit-name-' + ${user.id}"
+                                                                            th:value="${user.name}" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="edit-username">Username</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="username"
+                                                                            th:id="'edit-username-' + ${user.id}"
+                                                                            th:value="${user.username}" required
+                                                                            maxlength="10">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="edit-email">Email</label>
+                                                                        <input type="email" class="form-control"
+                                                                            name="email"
+                                                                            th:id="'edit-email-' + ${user.id}"
+                                                                            th:value="${user.email}">
+                                                                        <small id="emailHelp"
+                                                                            class="form-text text-warning font-weight-bold">Kami
+                                                                            tidak akan pernah membagikan email Anda
+                                                                            kepada orang lain.</small>
+                                                                    </div>
+                                                                    <div class="form-group position-relative">
+                                                                        <label
+                                                                            for="exampleInputPassword1">Password</label>
+                                                                        <input type="password" class="form-control"
+                                                                            name="password" id="exampleInputPassword1"
+                                                                            minlength="8">
+
+                                                                        <!-- Ikon mata -->
+                                                                        <span toggle="#exampleInputPassword1"
+                                                                            class="fa fa-fw fa-eye field-icon toggle-password"
+                                                                            onclick="togglePassword()"
+                                                                            style="position: absolute; top: 41px; right: 10px; cursor: pointer;"></span>
+
+                                                                        <small id="emailHelp"
+                                                                            class="form-text text-danger font-weight-bold">
+                                                                            Password minimal 8 karakter
+                                                                        </small>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="reset" class="btn btn-warning">
+                                                                        Reset</button>
+                                                                    <button type="submit" class="btn btn-primary"><i
+                                                                            class="fas fa-save"></i>
+                                                                        Simpan</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- delete button -->
+                                                <form th:action="@{'/admin/user/delete/' + ${user.id}}" method="POST"
+                                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                    <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="tambahModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form th:action="@{/admin/create/user}" method="post">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="name">Nama Langkap</label>
+                                            <input type="text" class="form-control" name="name" id="name"
+                                                aria-describedby="emailHelp" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" name="username" id="username"
+                                                aria-describedby="emailHelp" required maxlength="10">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email</label>
+                                            <input type="email" class="form-control" name="email"
+                                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <small id="emailHelp" class="form-text text-warning font-weight-bold">Kami
+                                                tidak akan pernah membagikan email Anda kepada orang lain.</small>
+                                        </div>
+                                        <div class="form-group position-relative">
+                                            <label for="exampleInputPassword1">Password</label>
+                                            <input type="password" class="form-control" name="password"
+                                                id="exampleInputPassword1" required minlength="8">
+
+                                            <!-- Ikon mata -->
+                                            <span toggle="#exampleInputPassword1"
+                                                class="fa fa-fw fa-eye field-icon toggle-password"
+                                                onclick="togglePassword()"
+                                                style="position: absolute; top: 41px; right: 10px; cursor: pointer;"></span>
+
+                                            <small id="emailHelp" class="form-text text-danger font-weight-bold">
+                                                Password minimal 8 karakter
+                                            </small>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="reset" class="btn btn-warning">
+                                            Reset</button>
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>
+                                            Simpan</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <div th:replace="~{components/admin/footer :: footer}"></div>
+            <!-- End of Footer -->
+
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const input = document.getElementById("exampleInputPassword1");
+            const icon = document.querySelector(".toggle-password");
+
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const editButtons = document.querySelectorAll(".btn-edit-user");
+
+            editButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const id = button.getAttribute("data-id");
+                    const name = button.getAttribute("data-name");
+                    const username = button.getAttribute("data-username");
+                    const email = button.getAttribute("data-email");
+
+                    // Isi ke dalam form modal
+                    document.getElementById("edit-name").value = name;
+                    document.getElementById("edit-username").value = username;
+                    document.getElementById("edit-email").value = email;
+
+                    // Kamu juga bisa set ID hidden jika diperlukan
+                    let idField = document.getElementById("edit-user-id");
+                    if (idField) {
+                        idField.value = id;
+                    }
+                });
+            });
+        });
+
+    </script>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+    <!-- Page level plugins -->
+    <script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+
+    <!-- Page level custom scripts -->
+    <script th:src="@{/js/demo/datatables-demo.js}"></script>
+</body>
+
+</html>
