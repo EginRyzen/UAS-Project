@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CozyKost - Affordable Room Rentals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navbar -->
+    <div th:replace="~{components/user/navbar :: navbar}"></div>
+    <!-- Hero Section -->
+    <div th:replace="~{page/user/hero :: hero}"></div>
+    
+    <!-- Features Section -->
+    <div th:replace="~{page/user/introduce :: introduce}"></div>
+    
+    <!-- Map -->
+    <div th:replace="~{page/user/map :: map}"></div>
+    
+    <!-- Testimonials -->
+    
+    <div th:replace="~{page/user/RoomListing :: RoomListing}"></div>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-indigo-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Find Your New Home?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Join hundreds of satisfied tenants enjoying comfortable living at affordable prices.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button class="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-4 rounded-md font-semibold transition-all">Book a Room Tour</button>
+                <button class="border-2 border-white text-white hover:bg-indigo-700 px-8 py-4 rounded-md font-semibold transition-all">Contact Us</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+    <div th:replace="~{components/user/footer :: footer}"></div>
+
+    <script>
+        // Simple JavaScript for mobile menu toggle (would need to be expanded for full functionality)
+        document.querySelector('.md\\:hidden button').addEventListener('click', function() {
+            // This would toggle a mobile menu in a real implementation
+            console.log('Mobile menu clicked - would open menu in full implementation');
+        });
+         function openModal(el) {
+  // Ambil nilai dari atribut data
+  document.getElementById('modalNama').textContent = el.dataset.nama;
+  document.getElementById('modalLokasi').textContent = el.dataset.lokasi;
+  document.getElementById('modalHarga').textContent = el.dataset.harga;
+  document.getElementById('modalCategory').textContent = el.dataset.category;
+  document.getElementById('modalKontak').textContent = el.dataset.kontak;
+  document.getElementById('modalImage').src = '/imagekos/' + el.dataset.image;
+  document.getElementById('modalDeskripsi').textContent = el.dataset.deskripsi; 
+
+const nomorTelepon = el.dataset.kontak;
+  const pesan = encodeURIComponent("Halo, saya tertarik dengan kos Anda.");
+  const waUrl = `https://wa.me/${nomorTelepon}`;
+  document.getElementById('whatsappLink').href = waUrl;
+
+  // Tampilkan modal
+  document.getElementById('modal').classList.remove('hidden');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.add('hidden');
+}
+    </script>
+
+    <!-- Modal Overlay -->
+<div id="modal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center px-4">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl p-8 relative transition-all duration-300">
+    
+    <!-- Tombol Tutup -->
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-red-500 transition">
+      &times;
+    </button>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Gambar Kos -->
+      <div class="w-full lg:w-2/3">
+        <img id="modalImage" src="" alt="Gambar Kos" class="w-full h-72 object-contain bg-gray-100 rounded-lg shadow-md mb-4 border" />
+        
+
+      </div>
+
+      <!-- Informasi Kos -->
+      <div class="w-full lg:w-1/3 flex flex-col justify-between">
+        <div>
+          <h2 id="modalNama" class="text-2xl font-extrabold text-gray-800 mb-2">Nama Kos</h2>
+
+          <span id="modalCategory" class="inline-block bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">Kategori</span>
+
+          <p class="text-lg font-semibold text-indigo-700 mb-2">Rp <span id="modalHarga"></span> / bulan</p>
+
+          <p class="text-sm text-gray-600 mb-1">
+            <i class="fas fa-map-marker-alt mr-2 text-indigo-500"></i>
+            <span id="modalLokasi"></span>
+          </p>
+
+          <p class="text-sm text-gray-600 mb-3">
+            <i class="fas fa-phone-alt mr-2 text-indigo-500"></i>
+            <span id="modalKontak"></span> (Pemilik)
+          </p>
+        </div>
+        <p class="text-sm text-gray-600 mb-3">
+          <i class="fas fa-align-left mr-2 text-indigo-500"></i>
+              <span id="modalDeskripsi"></span>
+      </p>
+
+        <div class="mt-4 flex flex-col gap-2">
+          <a id="whatsappLink" target="_blank" 
+            href="#" class="bg-indigo-600 hover:bg-indigo-700 text-white text-center py-2 rounded-lg text-sm transition-all">
+            <i class="fas fa-phone-alt mr-2"></i> Hubungi Pemilik
+          </a>
+
+
+          <button onclick="closeModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 rounded-lg text-sm transition-all">
+            Tutup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

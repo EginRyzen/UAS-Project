@@ -1,0 +1,61 @@
+<!-- Begin Page Content -->
+<div th:fragment="kos" class="container-fluid position-relative">
+
+    <!-- Page Heading -->
+    <div class="">
+        <a href="kos/add" type="button" class="btn btn-primary mb-3">Tambah Kos +<i class="fas fa-fw fa-home"></i>
+        </a>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente ut molestias illum reiciendis aliquam!
+            Blanditiis vel, provident delectus quibusdam quae cum aperiam soluta exercitationem ex, omnis dicta porro id
+            enim voluptatum non vero molestias temporibus. Quisquam repellendus eveniet neque repellat.</p>
+    </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Kos</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <!-- <th>Foto</th> -->
+                            <th>Nama Kos</th>
+                            <th>Harga</th>
+                            <th>Kontak</th>
+                            <th>Category</th>
+                            <th>Lokasi</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="kos : ${listkos}">
+                            <td class="font-weight-bold"><a th:href="@{'/admin/kos/detail/' + ${kos.id}}"
+                                    th:text="${kos.namaKos}"></a></td>
+                            <td class="font-weight-bold" th:text="'Rp. ' + ${kos.harga}"></td>
+                            <td class="font-weight-bold" th:text="${kos.kontak}"></td>
+                            <td class="font-weight-bold" th:text="${kos.category}"></td>
+                            <td class="font-weight-bold" th:text="${kos.lokasi}"></td>
+                            <td class="d-flex justify-content-center">
+                                <a th:href="@{'/admin/kos/edit/' + ${kos.id}}" type="button"
+                                    class="btn btn-warning mr-2 btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <form th:action="@{'/admin/kos/delete/' + ${kos.id}}" method="POST"
+                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
