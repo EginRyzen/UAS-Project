@@ -38,55 +38,88 @@
 
                     <!-- Content Row -->
                     <div class="container mt-5">
-                        <div class="card">
-                            <div class="row no-gutters">
-                                <div class="col-md-6">
-                                    <img th:src="@{'/imagekos/' + ${kos.image}}" class="card-img-top" height="400px"
-                                        alt="Kost Gambar">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="card-body">
-                                        <h5 class="card-title" th:text="${kos.namaKos}">Kos Bunda - Simpang 3</h5>
-                                        <span class="badge badge-info" th:text="${kos.category}">Putri</span>
-                                        <p class="card-text">Rp. <span th:text="${kos.harga}">200.000</span>/bulan</p>
-                                        <p class="card-text"><small class="text-muted" th:text="${kos.lokasi}">Jl.
-                                                Slamet Riyadi No.12, Simpang
-                                                3</small></p>
-                                        <p class="card-text"><small class="text-muted">Ibu Sunarti (Pemilik)</small></p>
-                                        <a href="tel:+628123456789" class="btn btn-primary">Hubungi Pemilik</a>
-                                        <h6 class="mt-3">Fasilitas</h6>
-                                        <div>
-                                            <span class="facilities-icon"><i class="fas fa-wifi"></i> WiFi</span>
-                                            <span class="facilities-icon"><i class="fas fa-bed"></i> Kasur</span>
-                                            <span class="facilities-icon"><i class="fas fa-bath"></i> Kamar Mandi</span>
-                                            <span class="facilities-icon"><i class="fas fa-concierge-bell"></i>
-                                                Dapur</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col">
-                                        <img src="https://via.placeholder.com/100" class="img-fluid" alt="Gambar 1">
-                                    </div>
-                                    <div class="col">
-                                        <img src="https://via.placeholder.com/100" class="img-fluid" alt="Gambar 2">
-                                    </div>
-                                    <div class="col">
-                                        <img src="https://via.placeholder.com/100" class="img-fluid" alt="Gambar 3">
-                                    </div>
-                                    <div class="col">
-                                        <img src="https://via.placeholder.com/100" class="img-fluid" alt="Gambar 4">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+        <div class="row g-0">
+            <!-- Gambar -->
+            <div class="col-md-5">
+                <img th:src="@{'/imagekos/' + ${kos.image}}"
+                     class="img-fluid h-100 w-100 object-fit-cover"
+                     style="object-fit: cover; min-height: 300px;"
+                     alt="Foto Kos">
+            </div>
+
+            <!-- Info -->
+            <div class="col-md-7">
+                <div class="card-body p-4 d-flex flex-column justify-content-between h-100">
+                    <div>
+                        <!-- Judul -->
+                        <h3 class="card-title fw-bold text-indigo mb-1" th:text="${kos.namaKos}">Nama Kos</h3>
+                       <span class="badge bg-primary text-white fw-semibold mb-3 px-3 py-2 rounded-pill"
+                                     th:text="${kos.category}">Putri</span>
+
+
+                        <!-- Harga -->
+                        <p class="mb-2 fs-5 fw-semibold text-success">
+                            Rp <span th:text="${kos.harga}">200.000</span>
+                            <small class="text-muted">/bulan</small>
+                        </p>
+
+                        <!-- Lokasi -->
+                        <p class="text-muted mb-1">
+                            <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                            <span th:text="${kos.lokasi}">Alamat Kos</span>
+                        </p>
+
+                        <!-- Pemilik -->
+                        <p class="text-muted mb-4">
+                            <i class="fas fa-user me-2 text-primary"></i>
+                            Ibu Sunarti (Pemilik)
+                        </p>
+
+                        <!-- Tombol Hubungi -->
+                        <a th:href="'tel:' + ${kos.kontak}"
+                           class="btn btn-outline-primary w-100 fw-semibold mb-4">
+                            <i class="fas fa-phone me-2"></i> Hubungi Pemilik
+                        </a>
+
+                        <!-- Fasilitas -->
+                        <!-- Heading Fasilitas -->
+                        <h6 class="fw-bold text-dark mt-4 mb-3 fs-5 d-flex align-items-center">
+                            <i class="fas fa-tools me-2 text-primary"></i> Fasilitas
+                        </h6>
+
+                        <!-- Daftar Fasilitas -->
+                  <div class="row mt-4">
+                     <div class="col-md-6">
+        <span class="d-flex align-items-center gap-3 px-4 py-2 my-2 bg-light border rounded-pill shadow-sm" style="min-width: 170px;">
+    <i class="fas fa-wifi fs-5 text-info"></i>
+    <span>WiFi</span>
+</span>
+
+    </div>
+    <div class="col-md-6">
+        <span class="d-flex align-items-center px-4 py-2 my-2 bg-light border rounded-pill shadow-sm" style="min-width: 170px;">
+            <i class="fas fa-bed me-3 fs-5 text-success"></i> Kasur
+        </span>
+    </div>
+    <div class="col-md-6">
+        <span class="d-flex align-items-center px-4 py-2 my-2 bg-light border rounded-pill shadow-sm" style="min-width: 170px;">
+            <i class="fas fa-bath me-3 fs-5 text-primary"></i> Kamar Mandi
+        </span>
+    </div>
+    <div class="col-md-6">
+        <span class="d-flex align-items-center px-4 py-2 my-2 bg-light border rounded-pill shadow-sm" style="min-width: 170px;">
+            <i class="fas fa-concierge-bell me-3 fs-5 text-warning"></i> Dapur
+        </span>
+    </div>
+</div>
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>  
+</div>
 
 
     </div>

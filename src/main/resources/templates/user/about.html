@@ -1,41 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+</html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Development Team</title>
+    <title>CozyKost</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
         .hero-image {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
             background-size: cover;
             background-position: center;
             height: 80vh;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8fafc;
         }
-        
+
         .profile-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        
+
         .profile-card {
             transition: all 0.3s ease;
         }
-        
+
         .skill-tag {
             transition: all 0.2s ease;
         }
-        
+
         .skill-tag:hover {
             transform: scale(1.05);
         }
-        
+
         .wave-bg {
             position: absolute;
             bottom: 0;
@@ -44,19 +49,20 @@
             overflow: hidden;
             line-height: 0;
         }
-        
+
         .wave-bg svg {
             position: relative;
             display: block;
             width: calc(100% + 1.3px);
             height: 150px;
         }
-        
+
         .wave-bg .shape-fill {
             fill: #FFFFFF;
         }
     </style>
 </head>
+
 <body>
     <!--Navbar-->
     <div th:replace="~{components/user/navbar :: navbar}"></div>
@@ -65,147 +71,220 @@
         <div class="conta iner mx-auto px-24 text-white">
             <div class="max-w-2xl">
                 <h1 class="text-4xl md:text-5xl font-bold mb-4">CozyKost</h1>
-                <p class="text-xl mb-8">Affordable, comfortable, and fully furnished rooms in prime locations across the city.</p>
+                <p class="text-xl mb-8">Affordable, comfortable, and fully furnished rooms in prime locations across the
+                    city.</p>
             </div>
         </div>
     </section>
-    
+
     <!-- Team Section -->
     <section class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Development Team</h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Team Member 1 -->
-                <div class="profile-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
-                             alt="Team Member" class="w-full h-64 object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h3 class="text-xl font-bold text-white">Alex Johnson</h3>
-                            <p class="text-indigo-200">Lead Developer</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-gray-600 mb-4">Full-stack developer with 8+ years of experience building scalable web applications. Passionate about clean code and mentoring junior developers.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">JavaScript</span>
-                            <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">React</span>
-                            <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Node.js</span>
-                            <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">AWS</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-gray-500 hover:text-indigo-600">
-                                <i class="fab fa-github fa-lg"></i>
-                            </a>
-                            <a href="#" class="text-gray-500 hover:text-blue-600">
-                                <i class="fab fa-linkedin fa-lg"></i>
-                            </a>
-                            <a href="#" class="text-gray-500 hover:text-pink-600">
-                                <i class="fab fa-dribbble fa-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Team Member 2 -->
-                <div class="profile-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" 
-                             alt="Team Member" class="w-full h-64 object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h3 class="text-xl font-bold text-white">Sarah Williams</h3>
-                            <p class="text-indigo-200">UI/UX Designer</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-gray-600 mb-4">Creative designer with a focus on user experience and beautiful interfaces. Specializes in creating intuitive designs that drive engagement.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="skill-tag bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Figma</span>
-                            <span class="skill-tag bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Adobe XD</span>
-                            <span class="skill-tag bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Illustrator</span>
-                            <span class="skill-tag bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">User Research</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-gray-500 hover:text-indigo-600">
-                                <i class="fab fa-behance fa-lg"></i>
-                            </a>
-                            <a href="#" class="text-gray-500 hover:text-blue-600">
-                                <i class="fab fa-linkedin fa-lg"></i>
-                            </a>
-                            <a href="#" class="text-gray-500 hover:text-red-600">
-                                <i class="fab fa-youtube fa-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Team Member 3 -->
-                <div class="profile-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
-                             alt="Team Member" class="w-full h-64 object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h3 class="text-xl font-bold text-white">Michael Chen</h3>
-                            <p class="text-indigo-200">DevOps Engineer</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <p class="text-gray-600 mb-4">Infrastructure specialist focused on building robust, scalable systems. Automates everything and ensures high availability.</p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="skill-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Docker</span>
-                            <span class="skill-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Kubernetes</span>
-                            <span class="skill-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Terraform</span>
-                            <span class="skill-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">CI/CD</span>
-                        </div>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-gray-500 hover:text-indigo-600">
-                                <i class="fab fa-github fa-lg"></i>
-                            </a>
-                            <a href="#" class="text-gray-500 hover:text-blue-600">
-                                <i class="fab fa-linkedin fa-lg"></i>
-                            </a>
-                            <a href="#" class="text-gray-500 hover:text-orange-600">
-                                <i class="fab fa-stack-overflow fa-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Development Team</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto"></div>
         </div>
-    </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Team Member 1 -->
+            <div class="profile-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl">
+                <div class="relative">
+                    <img src="/img/24111814009.jpg" alt="Team Member" class="w-full h-[420px] object-cover object-top" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <h3 class="text-xl font-bold text-white">Egin Sefiano</h3>
+                        <p class="text-indigo-200">Lead Developer</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Full-stack developer with 8+ years of experience building scalable web applications. Passionate about clean code and mentoring junior developers.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                        <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">React</span>
+                        <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">Node.js</span>
+                        <span class="skill-tag bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">AWS</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" target="_blank" class="text-gray-500 hover:text-red-600"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="profile-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl">
+                <div class="relative">
+                    <img src="/img/24111814098.jpg" alt="Team Member" class="w-full h-[420px] object-cover object-top" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <h3 class="text-xl font-bold text-white">Rayhan Nafish</h3>
+                        <p class="text-indigo-200">Assistant Developer</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Creative designer with a focus on user experience and beautiful interfaces. Specializes in creating intuitive designs that drive engagement.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-tag bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Spring-Boot</span>
+                        <span class="skill-tag bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Tailwind</span>
+                        <span class="skill-tag bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm">Java</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/RN-1007" target="_blank" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="https://www.instagram.com/rayhan_nafish/profilecard/?igsh=aXc1cmdhZm95bWx1" target="_blank" class="text-gray-500 hover:text-red-600"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="profile-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl">
+                <div class="relative">
+                    <img src="/img/24111814022.jpg" alt="Team Member" class="w-full h-[420px] object-cover object-top" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <h3 class="text-xl font-bold text-white">Leony Andhika</h3>
+                        <p class="text-indigo-200">Data Entry</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Detail-oriented professional specializing in accurate and efficient data entry. Skilled in managing large datasets, ensuring data integrity, and maintaining confidentiality across digital systems.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Excel</span>
+                        <span class="skill-tag bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">MySql</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/leooalderic" target="_blank" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="https://www.instagram.com/lny.andika/profilecard/?igsh=azYyYW56MmFhcW93" target="_blank" class="text-gray-500 hover:text-red-600"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="profile-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl">
+                <div class="relative">
+                    <img src="/img/24111814126.jpg" alt="Team Member" class="w-full h-[420px] object-cover object-top" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <h3 class="text-xl font-bold text-white">Aditya Putra</h3>
+                        <p class="text-indigo-200">QA Engineer</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Detail-oriented tester ensuring product reliability and quality. Experienced in automation and performance testing.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-tag bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">HTML</span>
+                        <span class="skill-tag bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">CSS</span>
+                        <span class="skill-tag bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Yapping</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" target="_blank" class="text-gray-500 hover:text-red-600"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 5 -->
+            <div class="profile-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl">
+                <div class="relative">
+                    <img src="/img/24111814033.jpg" alt="Team Member" class="w-full h-[420px] object-cover object-top" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <h3 class="text-xl font-bold text-white">Felicia Andhara</h3>
+                        <p class="text-indigo-200">QA Engineer</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Detail-oriented tester ensuring product reliability and quality. Experienced in automation and performance testing.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Java</span>
+                        <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Spring Boot</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" target="_blank" class="text-gray-500 hover:text-red-600"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 6 -->
+            <div class="profile-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl">
+                <div class="relative">
+                    <img src="/img/24111814030.jpg" alt="Team Member" class="w-full h-[420px] object-cover object-top" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <h3 class="text-xl font-bold text-white">Muhammad Dava</h3>
+                        <p class="text-indigo-200">QA Engineer</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Detail-oriented tester ensuring product reliability and quality. Experienced in automation and performance testing.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-tag bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Java</span>
+                        <span class="skill-tag bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Spring-boot</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" target="_blank" class="text-gray-500 hover:text-red-600"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden lg:block"></div>
+
+            <!-- Team Member 7 -->
+            <div class="profile-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl">
+                <div class="relative">
+                    <img src="/img/24111814018.jpg" alt="Team Member" class="w-full h-[420px] object-cover object-top" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4">
+                        <h3 class="text-xl font-bold text-white">Moch.Wafiq</h3>
+                        <p class="text-indigo-200">QA Engineer</p>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Detail-oriented tester ensuring product reliability and quality. Experienced in automation and performance testing.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-tag bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Java</span>
+                        <span class="skill-tag bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Spring-boot</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/wafiq16052006" target="_blank" class="text-gray-500 hover:text-indigo-600"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="https://www.instagram.com/wfqznn?igsh=d2RtbmZjcXg1ejhh" target="_blank" class="text-gray-500 hover:text-red-600"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden lg:block"></div>
+        </div>
+    </div>
+</section>
+
+
 
     <!-- Stats Section -->
     <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <div class="text-4xl font-bold text-indigo-600 mb-2">8+</div>
-                    <div class="text-gray-600">Years Experience</div>
+                <div class="bg-sky-100 p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-red-600 mb-2">100%</div>
+                    <div class="text-gray-600">Experience</div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <div class="text-4xl font-bold text-purple-600 mb-2">24</div>
+                <div class="bg-sky-100 p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-yellow-600 mb-2">100%</div>
                     <div class="text-gray-600">Projects Completed</div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <div class="text-4xl font-bold text-pink-600 mb-2">15+</div>
+                <div class="bg-sky-100 p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-green-600 mb-2">100%</div>
                     <div class="text-gray-600">Technologies Used</div>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm">
-                    <div class="text-4xl font-bold text-blue-600 mb-2">100%</div>
-                    <div class="text-gray-600">Client Satisfaction</div>
+                <div class="bg-sky-100 p-6 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-indigo-600 mb-2">100%</div>
+                    <div class="text-gray-600">Satisfaction</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- CTA Section
     <section class="py-16 bg-gradient-to-r from-indigo-600 to-blue-600 text-white">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-6">Want to join our team?</h2>
@@ -214,7 +293,7 @@
                 View Open Positions
             </button>
         </div>
-    </section>
+    </section> -->
 
     <!-- Footer -->
     <div th:replace="~{components/user/footer :: footer}"></div>
@@ -222,9 +301,9 @@
 
     <script>
         // Simple animation for team members when they come into view
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const teamMembers = document.querySelectorAll('.profile-card');
-            
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -233,7 +312,7 @@
                     }
                 });
             }, { threshold: 0.1 });
-            
+
             teamMembers.forEach(member => {
                 member.style.opacity = '0';
                 member.style.transform = 'translateY(20px)';
@@ -243,4 +322,5 @@
         });
     </script>
 </body>
+
 </html>
