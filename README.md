@@ -8,3 +8,5 @@ Selamat bergabung teman-teman ku, mari kita menjadi beban bersama!!!
 -Muhammad Dava Firmansyah (24111814030)
 -Aditya Putra Wicaksana (24111814126)
 -Moch.Wafiq Izna (24111814018)
+-Egin Sefiano Widodo(24111814009)
+-Rayhan Nafish Dwi Prananda(24111814098)
