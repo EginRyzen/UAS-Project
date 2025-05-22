@@ -6,10 +6,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CozyKost - Boarding Houses</title>
+  <title>CozyKost</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
     .hero-image {
       background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
       background-size: cover;
@@ -21,6 +23,12 @@
       transition: all 0.3s ease;
       border-radius: 0;
     }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+
 
     .property-card:hover {
       transform: translateY(-5px);
@@ -40,7 +48,8 @@
   </style>
 </head>
 
-<body class="font-sans bg-gray-50">
+<body>
+
   <!-- Navbar -->
   <div th:replace="~{components/user/navbar :: navbar}"></div>
   <!-- Hero Section -->
@@ -49,41 +58,47 @@
   <!-- Filter Bar -->
   <div class="bg-white shadow-sm py-4">
     <div class="container mx-auto px-6">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-        <div class="text-lg font-semibold">
-          <span class="text-gray-500">Showing</span>
-          <span class="text-indigo-600">24</span>
-          <span class="text-gray-500">Properties</span>
+      <form th:action="@{/rooms}" method="get" id="filterForm">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="text-lg font-semibold">
+            <span class="text-gray-500">Showing</span>
+            <span class="text-indigo-600" th:text="${listkos.size()}">24</span>
+            <span class="text-gray-500">Properties</span>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <!-- Price Filter -->
+            <select name="priceFilter" class="bg-gray-100 border-0 rounded-md px-3 py-2 text-sm"
+              onchange="document.getElementById('filterForm').submit()">
+              <option value="" th:selected="${priceFilter == null}">Any Price</option>
+              <option value="below500" th:selected="${priceFilter == 'below500'}">
+                < Rp 500.000 </option>
+              <option value="range500to1m" th:selected="${priceFilter == 'range500to1m'}">Rp 500.000 - Rp 1.000.000
+              </option>
+              <option value="above1m" th:selected="${priceFilter == 'above1m'}"> > Rp 1.000.000 </option>
+            </select>
+
+            <!-- Type Filter -->
+            <select name="typeFilter" class="bg-gray-100 border-0 rounded-md px-3 py-2 text-sm"
+              onchange="document.getElementById('filterForm').submit()">
+              <option value="" th:selected="${typeFilter == null}">Any Type</option>
+              <option value="Putri" th:selected="${typeFilter == 'Putri'}">Putri</option>
+              <option value="Putra" th:selected="${typeFilter == 'Putra'}">Putra</option>
+              <option value="Bebas" th:selected="${typeFilter == 'Bebas'}">Campur</option>
+            </select>
+
+            <button type="submit"
+              class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm hover:bg-indigo-700 transition-all">
+              <i class="fas fa-sliders-h mr-2"></i>Filters
+            </button>
+          </div>
         </div>
-
-        <div class="flex flex-wrap gap-2">
-          <select class="bg-gray-100 border-0 rounded-md px-3 py-2 text-sm">
-            <option>Any Location</option>
-            <option>Downtown</option>
-            <option>University District</option>
-            <option>Business Park</option>
-          </select>
-
-          <select class="bg-gray-100 border-0 rounded-md px-3 py-2 text-sm">
-            <option>Any Price</option>
-            <option>Under $200</option>
-            <option>$200 - $300</option>
-            <option>Over $300</option>
-          </select>
-
-          <select class="bg-gray-100 border-0 rounded-md px-3 py-2 text-sm">
-            <option>Any Type</option>
-            <option>Standard Room</option>
-            <option>Deluxe Room</option>
-            <option>Executive Suite</option>
-          </select>
-
-          <button class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm hover:bg-indigo-700 transition-all">
-            <i class="fas fa-sliders-h mr-2"></i>Filters
-          </button>
-        </div>
-      </div>
+      </form>
     </div>
+  </div>
+
+  </div>
+  </div>
   </div>
 
   <!-- Property Listing -->
@@ -91,21 +106,32 @@
     <!-- Property Card 1 -->
     <div th:replace="~{page/user/card :: card}"></div>
     <!-- Pagination -->
-    <div class="flex justify-center mt-12">
+    <div class="flex justify-center mt-12" th:if="${totalPages > 0}">
       <nav class="flex items-center space-x-2">
-        <a href="#" class="px-4 py-2 border rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">
+        <!-- Tombol Previous -->
+        <a th:if="${currentPage > 0}"
+          th:href="@{/rooms(page=${currentPage - 1}, priceFilter=${priceFilter}, typeFilter=${typeFilter})}"
+          class="px-4 py-2 border rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">
           <i class="fas fa-chevron-left"></i>
         </a>
-        <a href="#" class="px-4 py-2 border rounded-md bg-indigo-600 text-white">1</a>
-        <a href="#" class="px-4 py-2 border rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">2</a>
-        <a href="#" class="px-4 py-2 border rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">3</a>
-        <span class="px-4 py-2 text-gray-600">...</span>
-        <a href="#" class="px-4 py-2 border rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">8</a>
-        <a href="#" class="px-4 py-2 border rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">
+
+        <!-- Tombol Halaman -->
+        <a th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+          th:href="@{/rooms(page=${i}, priceFilter=${priceFilter}, typeFilter=${typeFilter})}" th:text="${i + 1}"
+          th:classappend="${i == currentPage} ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:bg-indigo-50 hover:text-indigo-600'"
+          class="px-4 py-2 border rounded-md">
+        </a>
+
+        <!-- Tombol Next -->
+        <a th:if="${currentPage < totalPages - 1}"
+          th:href="@{/rooms(page=${currentPage + 1}, priceFilter=${priceFilter}, typeFilter=${typeFilter})}"
+          class="px-4 py-2 border rounded-md text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">
           <i class="fas fa-chevron-right"></i>
         </a>
       </nav>
     </div>
+
+
   </main>
 
 
