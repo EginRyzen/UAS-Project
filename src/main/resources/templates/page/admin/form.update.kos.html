@@ -1,0 +1,73 @@
+<!-- Begin Page Content -->
+<div th:fragment="updatekos" class="container position-relative">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Craete Data Kos <i class="fas fa-fw fa-home"></i> </h6>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <form th:action="@{/admin/kos/edit/{id}(id=${kos.id})}" th:object="${kos}" method="post"
+                        enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="namekos" class="form-label">Kos Nama</label>
+                            <input type="text" th:field="*{namaKos}" required placeholder="Masukan Nama Kos"
+                                class="form-control" id="namekos">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Harga Kos</label>
+                            <input type="number" th:field="*{harga}" required class="form-control"
+                                placeholder="Masukan Harga Kos">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Kontak</label>
+                            <input type="number" th:field="*{kontak}" class="form-control"
+                                placeholder="Masukkan Nomor Kontak">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Category Kos</label>
+                            <select class="form-control" th:field="*{category}" required>
+                                <option value="Putri">Putri</option>
+                                <option value="Putra">Putra</option>
+                                <option value="Bebas" selected>Bebas</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="oactionkos" class="form-label">Lokasi Kos</label>
+                            <input type="text" th:field="*{lokasi}" placeholder="Masukan Lokasi Kos"
+                                class="form-control" id="oactionkos" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="deskripsi" class="form-label">Masukan Deskripsi</label>
+                            <textarea class="form-control" placeholder="Masukan Deskripsi" id="floatingTextarea2"
+                                style="height: 100px" th:field="*{deskripsi}"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="updateImage" class="form-label">Masukan Foto</label>
+                            <input class="form-control" th:field="*{image}" name="image" type="file" id="updateImage"
+                                accept="image/*">
+                            <img th:src="${kos.image != null} ? @{/imagekos/{img}(img=${kos.image})} : ''"
+                                th:id="previewUpdate" style="height: 300px; border-radius: 20px;" class="mt-3" />
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

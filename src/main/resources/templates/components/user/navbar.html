@@ -1,0 +1,25 @@
+ <!-- Navbar -->
+    <nav th:fragment="navbar" class="bg-white shadow-md sticky top-0 z-50">
+         <!-- Navbar -->
+        <div class="container mx-auto px-16 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="text-2xl font-bold text-indigo-600">Cozy<span class="text-gray-800">Kost</span></div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-800 hover:text-indigo-600 transition-all">Home</a>
+                    <a href="/rooms" class="text-gray-800 hover:text-indigo-600 transition-all">Rooms</a>                    
+                    <a href="/about" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-all">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
