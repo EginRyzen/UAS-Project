@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package com.example.crud.controller;
+=======
+package com.example.kos.controller;
+>>>>>>> 16a4b6aa770b4a9767edf8d4d74430fd68cb4c7a
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,8 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+<<<<<<< HEAD
 import com.example.crud.models.User;
 import com.example.crud.repository.UserRepository;
+=======
+import com.example.kos.models.User;
+import com.example.kos.repository.UserRepository;
+>>>>>>> 16a4b6aa770b4a9767edf8d4d74430fd68cb4c7a
 // import com.example.crud.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -28,11 +37,14 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+<<<<<<< HEAD
     // Dapat dihilangkan di Spring modern
     // public AuthController(UserService userService) {
     // this.userService = userService;
     // }
 
+=======
+>>>>>>> 16a4b6aa770b4a9767edf8d4d74430fd68cb4c7a
     @GetMapping("/login")
     public String getLogin() {
         return "auth/login";
