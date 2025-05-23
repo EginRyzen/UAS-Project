@@ -10,9 +10,13 @@ import com.example.kos.models.Kos;
 
 @Repository
 public interface KosRepository extends JpaRepository<Kos, Integer> {
+    long count();
+
     Optional<Kos> findById(Long id);
 
     Kos deleteById(Long id);
+
+    long countByCategory(String category);
 
     // List<Kos> findAll(Sort sort);
 
