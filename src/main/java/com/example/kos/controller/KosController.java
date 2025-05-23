@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-package com.example.crud.controller;
-=======
 package com.example.kos.controller;
->>>>>>> 16a4b6aa770b4a9767edf8d4d74430fd68cb4c7a
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -17,19 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-<<<<<<< HEAD
-import com.example.crud.dtos.KosDTO;
-import com.example.crud.models.Kos;
-import com.example.crud.models.User;
-import com.example.crud.repository.KosRepository;
-import com.example.crud.service.KosService;
-=======
 import com.example.kos.dtos.KosDTO;
 import com.example.kos.models.Kos;
 import com.example.kos.models.User;
 import com.example.kos.repository.KosRepository;
 import com.example.kos.service.KosService;
->>>>>>> 16a4b6aa770b4a9767edf8d4d74430fd68cb4c7a
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;

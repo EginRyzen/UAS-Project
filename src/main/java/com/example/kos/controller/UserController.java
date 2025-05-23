@@ -1,15 +1,7 @@
-<<<<<<< HEAD
-package com.example.crud.controller;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-// import org.springframework.web.bind.annotation.DeleteMapping;
-=======
 package com.example.kos.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
->>>>>>> 16a4b6aa770b4a9767edf8d4d74430fd68cb4c7a
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,15 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-<<<<<<< HEAD
-import com.example.crud.models.User;
-// import com.example.crud.repository.UserRepository;
-import com.example.crud.service.UserService;
-=======
 import com.example.kos.models.User;
 // import com.example.kos.repository.UserRepository;
 import com.example.kos.service.UserService;
->>>>>>> 16a4b6aa770b4a9767edf8d4d74430fd68cb4c7a
 
 import jakarta.servlet.http.HttpSession;
 
