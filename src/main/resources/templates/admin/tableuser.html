@@ -38,7 +38,7 @@
                     <div class="">
                         <a type="button" class="btn btn-primary mb-3" data-toggle="modal"
                             data-target="#tambahModal">Tambah
-                            Kos +<i class="fas fa-fw fa-user"></i> </a>
+                            User +<i class="fas fa-fw fa-user"></i> </a>
 
                         <div th:if="${error}" class="alert alert-danger mb-4" th:text="${error}"></div>
                         <div th:if="${success}" class="alert alert-success mb-4" th:text="${success}"></div>
@@ -130,14 +130,18 @@
                                                                         <label
                                                                             for="exampleInputPassword1">Password</label>
                                                                         <input type="password" class="form-control"
-                                                                            name="password" id="exampleInputPassword1"
+                                                                            name="password"
+                                                                            th:id="'exampleInputPassword1_' + ${user.id}"
                                                                             minlength="8">
 
+
                                                                         <!-- Ikon mata -->
-                                                                        <span toggle="#exampleInputPassword1"
+                                                                        <span
+                                                                            th:attr="toggle='#exampleInputPassword1_' + ${user.id}"
                                                                             class="fa fa-fw fa-eye field-icon toggle-password"
-                                                                            onclick="togglePassword()"
+                                                                            th:onclick="'togglePassword(' + ${user.id} + ')'"
                                                                             style="position: absolute; top: 41px; right: 10px; cursor: pointer;"></span>
+
 
                                                                         <small id="emailHelp"
                                                                             class="form-text text-danger font-weight-bold">
@@ -249,20 +253,21 @@
     </div>
 
     <script>
-        function togglePassword() {
-            const input = document.getElementById("exampleInputPassword1");
-            const icon = document.querySelector(".toggle-password");
+       function togglePassword(userId) {
+    const input = document.getElementById(`exampleInputPassword1_${userId}`);
+    const icon = document.querySelector(`[toggle='#exampleInputPassword1_${userId}']`);
 
-            if (input.type === "password") {
-                input.type = "text";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
-            } else {
-                input.type = "password";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
-            }
-        }
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+
 
         document.addEventListener("DOMContentLoaded", function () {
             const editButtons = document.querySelectorAll(".btn-edit-user");
